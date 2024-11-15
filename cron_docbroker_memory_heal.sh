@@ -1,4 +1,5 @@
-#!/bin/bash gg
+# 20241115 09:40
+#!/bin/bash
 # Flags for controlling if the monitor is currently enabled, 
 # if opcmsg notifications are sent to Operation Manager and if mails are sent
 OPCMSG_ENABLED='0'
