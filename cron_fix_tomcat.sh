@@ -1,4 +1,4 @@
-#!/bin/bash bastida1
+#!/bin/bash basda1
 # Flags for controlling if the monitor is currently enabled,
 enable='1'
 
