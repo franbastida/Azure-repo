@@ -55,27 +55,26 @@ source $SCRIPT_ROOT/modules/itemStateHandler.sh
 source $SCRIPT_ROOT/modules/inputParameterHandler.sh
 
 # Load other modules
-source $SCRIPT_ROOT/modules/bravaPublisherProcess.sh
+source $SCRIPT_ROOT/modules/dmagentexecTestProcesses.sh
 
 # Settings for arugments passed to opcmsg and e-mail calls
 _APPLICATION='Documentum'
-_CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Brava+Publisher+process+is+not+running"
+_CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/dm_agent_exec_processess"
 _SEVERITY="warning"
 _OBJECT=""
 
-### Local
-# Check if Brava Publisher services are running
-_OBJECT="BravaPublisher"
-outputHandler "## Running RUNNER: test_brava_publisher.sh - MODULE: bravaPublisherProcess ##" "INFO" "$_APPLICATION" "$_OBJECT"
-bravaPublisherProcess rcNormal rcError "SEVERITY[$_SEVERITY]"
-itemStateHandler "bravaPublisherProcess" "$_SEVERITY" "${rcNormal[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
-itemStateHandler "bravaPublisherProcess" "$_SEVERITY" "${rcError[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
-notificationHandler "$_MSG" "$_SEVERITY" "$_APPLICATION" "$_OBJECT"
+### LOCAL
+# Check if Tomcat is running on server
+_OBJECT="Tomcat"
+outputHandler "## Running RUNNER: test_dmagentexec_processes.sh - MODULE: dmagentexecTestProcesses  ##" "INFO" "$_APPLICATION" "$_OBJECT" # Echo error message to logs/output
+dmagentexecTestProcesses rcNormal rcError "SEVERITY[$_SEVERITY]" $TOMCAT_LIST
+itemStateHandler "dmagentexecTestProcesses" "$_SEVERITY" "${rcNormal[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
+itemStateHandler "dmagentexecTestProcesses" "$_SEVERITY" "${rcError[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
 if [ $TRACE == 1 ]; then outputHandler "rcNormal: ${rcNormal[*]}" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
 if [ $TRACE == 1 ]; then outputHandler "rcError: ${rcError[*]}" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
-unset rcNormal rcError
 
 # Final variable cleanup
+unset rcNormal rcError
 unset _OBJECT _APPLICATION _CONFLUENCE_LINK _SEVERITY
 
 #restore IFS

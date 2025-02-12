@@ -58,7 +58,7 @@ source $SCRIPT_ROOT/modules/inputParameterHandler.sh
 source $SCRIPT_ROOT/modules/xploreWatchdogProcess.sh
 
 # Settings for arugments passed to opcmsg and e-mail calls
-_APPLICATION='xPlore'
+_APPLICATION='Documentum'
 _CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Documentum+xPlore+-+Watchdog+process+is+not+running"
 _SEVERITY="warning"
 _OBJECT=""
