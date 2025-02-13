@@ -38,7 +38,7 @@ docbaseCountProcess () {
         local _DOCBASE_PROC_COUNT=`ps -fu $DMUSER | grep "./documentum -docbase_name $_docbase" |  grep -v grep | wc -l`
         if [ $TRACE == 1 ]; then outputHandler "_DOCBASE_AGENT_EXEC_PROC_COUNT for '$_docbase': $_DOCBASE_PROC_COUNT" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
 
-        if [[ $_DOCBASE_DOCUMENTUM_PROC_COUNT -lt 1 ]]; then
+        if [[ $_DOCBASE_PROC_COUNT -lt 1 ]]; then
             _RESULTDOCUMENTUMnotRUNNING=$_RESULTDOCUMENTUMnotRUNNING+1;    
         fi
 
@@ -56,7 +56,6 @@ docbaseCountProcess () {
     #Processing the errors/normal arrays
 
      _MSG="No documentum processes found for at least one docbase"
-     if [ $TRACE == 1 ]; then outputHandler "_MSG: '${_MSG}'" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
         
      if [[ $_RESULTDOCUMENTUMnotRUNNING -lt 1 ]]; then
         # Process the normal path
@@ -69,7 +68,7 @@ docbaseCountProcess () {
      
      # Variable cleanup for loop
      unset _MSG
-     unset _DOCBASE_DOCUMENTUM_PROC_COUNT
+     unset _DOCBASE_PROC_COUNT
      unset _RESULTDOCUMENTUMnotRUNNING
    
 

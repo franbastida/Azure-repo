@@ -56,7 +56,6 @@ dmagentexecCountProcess () {
     #Processing the errors/normal arrays
 
      _MSG="No dm_agent_exec processes found for at least one docbase"
-     if [ $TRACE == 1 ]; then outputHandler "_MSG: '${_MSG}'" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
         
      if [[ $_RESULTDMAGENTEXECnotRUNNING -lt 1 ]]; then
         # Process the normal path
