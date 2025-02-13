@@ -55,21 +55,27 @@ source $SCRIPT_ROOT/modules/itemStateHandler.sh
 source $SCRIPT_ROOT/modules/inputParameterHandler.sh
 
 # Load other modules
-source $SCRIPT_ROOT/modules/dmagentexecTestProcesses.sh
+source $SCRIPT_ROOT/modules/dmagentexecCountProcess.sh
+source $SCRIPT_ROOT/modules/docbaseCountProcess.sh
+
 
 # Settings for arugments passed to opcmsg and e-mail calls
 _APPLICATION='Documentum'
-_CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/dm_agent_exec_processess"
+_CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/docbase"
 _SEVERITY="warning"
-_OBJECT=""
+_OBJECT="Docbase"
 
-### LOCAL
-# Check if Tomcat is running on server
-_OBJECT="Tomcat"
-outputHandler "## Running RUNNER: test_dmagentexec_processes.sh - MODULE: dmagentexecTestProcesses  ##" "INFO" "$_APPLICATION" "$_OBJECT" # Echo error message to logs/output
-dmagentexecTestProcesses rcNormal rcError "SEVERITY[$_SEVERITY]" $TOMCAT_LIST
-itemStateHandler "dmagentexecTestProcesses" "$_SEVERITY" "${rcNormal[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
-itemStateHandler "dmagentexecTestProcesses" "$_SEVERITY" "${rcError[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
+outputHandler "## Running RUNNER: test_docbase_CountProcess.sh - MODULE: dmagentexecCountProcess ##" "$_APPLICATION" "$_OBJECT"
+dmagentexecCountProcess rcNormal rcError "SEVERITY[$_SEVERITY]" $TOMCAT_LIST
+itemStateHandler "dmagentexecCountProcess" "$_SEVERITY" "${rcNormal[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
+itemStateHandler "dmagentexecCountProcess" "$_SEVERITY" "${rcError[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
+if [ $TRACE == 1 ]; then outputHandler "rcNormal: ${rcNormal[*]}" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
+if [ $TRACE == 1 ]; then outputHandler "rcError: ${rcError[*]}" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
+
+outputHandler "## Running RUNNER: test_docbase_CountProcess.sh - MODULE: docbaseCountProcess  ##" "INFO" "$_APPLICATION" "$_OBJECT" # Echo error message to logs/output
+docbaseCountProcess rcNormal rcError "SEVERITY[$_SEVERITY]" $TOMCAT_LIST
+itemStateHandler "docbaseCountProcess" "$_SEVERITY" "${rcNormal[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
+itemStateHandler "docbaseCountProcess" "$_SEVERITY" "${rcError[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
 if [ $TRACE == 1 ]; then outputHandler "rcNormal: ${rcNormal[*]}" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
 if [ $TRACE == 1 ]; then outputHandler "rcError: ${rcError[*]}" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
 

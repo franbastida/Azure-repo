@@ -28,7 +28,7 @@ STAGE='PROD'  # This value is not relevant. STAGE value is taken from
 # xPLore
 #       test_xplore.sh --> xploreCountProcess
 #       test_xplore_watchdog.sh --> xploreWatchdogProcess
-RUNNERS="test_cs_database.sh test_cs_jms_d2_tomcat.sh test_dmagentexec_processes.sh test_cs_xplore.sh test_cs_nfs_mp.sh"
+RUNNERS="test_cs_database.sh test_cs_jms_d2_tomcat.sh test_docbase_CountProcess.sh test_cs_xplore.sh test_cs_nfs_mp.sh"
 
 
 #Create logs directory if it doesnt exist
