@@ -24,7 +24,7 @@ STAGE='PROD'  # This value is not relevant. STAGE value is taken from
 #       test_cs_jms_d2_tomcat.sh -->  jmsCountProcessTomcat, jmsTestConnection ,  docbaseTestConnection , jmsTestD2Method
 #       test_cs_xplore.sh --> xploreTestDsearch , xploreTestIndexagent
 #       test_cs_nfs_mp.sh --> nfsMountPointTester.sh
-#       test_dmagentexec_processes.sh --> dmagentexecTestProcesses.sh
+#       test_docbase_CountProcess.sh  --> docbaseCountProcess.sh, test_docbase_CountProcess.sh
 # xPLore
 #       test_xplore.sh --> xploreCountProcess
 #       test_xplore_watchdog.sh --> xploreWatchdogProcess
