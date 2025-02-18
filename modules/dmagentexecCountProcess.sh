@@ -30,18 +30,17 @@ dmagentexecCountProcess () {
     
     if [ $DEBUG == 1 ]; then outputHandler "Running dm_agent_exec test of docbases: '${_ARRAY_DOCBASES[*]}'" "DEBUG" "$_APPLICATION" "$_OBJECT"; fi
 
-    local _MSG="No dm_agent_exec proces found for at least one docbase"
+    local _MSG="No dm_agent_exec process found for at least one docbase"
 
     for _docbase in "${_ARRAY_DOCBASES[@]}";
     do
         if [ $DEBUG == 1 ]; then outputHandler "Running dm_agent_exec process test for docbase: '${_docbase}'" "DEBUG" "$_APPLICATION" "$_OBJECT"; fi
-
+        
         # Count processes for docbase
-        local _DOCBASE_AGENT_EXEC_PROC_COUNT=`ps -fu $DMUSER | grep "./dm_agent_exec -enable_ha_setup 1 -docbase_name $_docbase" |  grep -v grep | wc -l`
-
+        local _DOCBASE_AGENT_EXEC_PROC_COUNT=`ps -fu $DMUSER | grep "./dm_agent_exec" | grep $_docbase | grep -v grep | wc -l`
         if [[ $_DOCBASE_AGENT_EXEC_PROC_COUNT -lt 1 ]]; then
             # Proceed with notification ERROR
-            local _MSG_error="ERROR -> No dm_agent_exec proces found for $_docbase"
+            local _MSG_error="ERROR -> No dm_agent_exec process found for $_docbase"
             outputHandler "$_MSG_error" "$_SEVERITY" "$_APPLICATION" "$_OBJECT" # Echo error message to logs/output
             _ARRAY_FAIL_DOCBASES+=($_docbase)
         else
@@ -55,7 +54,7 @@ dmagentexecCountProcess () {
         _ARRAY_NORMAL[${#_ARRAY_NORMAL[@]}]="$_MSG|" # Add error to array with items without error
      else
         # Process the error state path
-        outputHandler "No documentum processes found for at least one docbase ${_ARRAY_FAIL_DOCBASES[*]}" "$_SEVERITY" "$_APPLICATION" "$_OBJECT" # Echo error message to logs/output
+        outputHandler "No dm_agent_exec process found for at least one docbase ${_ARRAY_FAIL_DOCBASES[*]}" "$_SEVERITY" "$_APPLICATION" "$_OBJECT" # Echo error message to logs/output
         _ARRAY_ERROR[${#_ARRAY_ERROR[@]}]="$_MSG|" # Add error to array with errors
      fi
      

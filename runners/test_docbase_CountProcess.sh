@@ -61,7 +61,7 @@ source $SCRIPT_ROOT/modules/docbaseCountProcess.sh
 
 # Settings for arugments passed to opcmsg and e-mail calls
 _APPLICATION='Documentum'
-_CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/docbase"
+_CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Documentum+Server+-+dm_agent_exec+or+documentum+process+is+not+working+properly"
 _SEVERITY="warning"
 _OBJECT="Docbase"
 

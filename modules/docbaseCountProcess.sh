@@ -43,7 +43,7 @@ docbaseCountProcess () {
             # Proceed with notification ERROR
             local _MSG_error="ERROR -> No documentum processes found for $_docbase"
             outputHandler "$_MSG_error" "$_SEVERITY" "$_APPLICATION" "$_OBJECT" # Echo error message to logs/output
-            _ARRAY_FAIL_DOCBASES+=($_docbase)
+                _ARRAY_FAIL_DOCBASES+=($_docbase);
         else
             outputHandler "$_DOCBASE_PROC_COUNT documentum processes are running for $_docbase" "INFO" "$_APPLICATION" "$_OBJECT"  # Echo info message to logs/output
         fi
