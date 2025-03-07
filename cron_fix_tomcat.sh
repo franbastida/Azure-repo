@@ -37,8 +37,6 @@ then
         chmod +rw "$SCRIPT_ROOT/logs/monitoring.log.$_DAY"
 fi
 
-source "$SCRIPT_ROOT/settings/settings_$STAGE.sh"
-
 # Execute the scripts, send the notification if a script is already running
 for _RUNNER_NAME in $RUNNERS; do
         if pgrep "${_RUNNER_NAME%.*}">/dev/null 2>&1
