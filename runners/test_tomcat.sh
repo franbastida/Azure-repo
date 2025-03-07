@@ -54,8 +54,11 @@ source $SCRIPT_ROOT/modules/outputHandler.sh
 source $SCRIPT_ROOT/modules/itemStateHandler.sh
 source $SCRIPT_ROOT/modules/inputParameterHandler.sh
 
+
 # Load other modules
 source $SCRIPT_ROOT/modules/tomcatCountProcess.sh
+source $SCRIPT_ROOT/modules/networkCheckWebapp.sh
+
 # Settings for arugments passed to opcmsg and e-mail calls
 _APPLICATION='Documentum'
 _CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Apache+Tomcat+is+not+working+properly"
@@ -69,6 +72,15 @@ outputHandler "## Running RUNNER: test_tomcat.sh - MODULE: tomcatCountProcess ##
 tomcatCountProcess rcNormal rcError "SEVERITY[$_SEVERITY]" $TOMCAT_LIST
 itemStateHandler "tomcatCountProcess" "$_SEVERITY" "${rcNormal[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
 itemStateHandler "tomcatCountProcess" "$_SEVERITY" "${rcError[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
+if [ $TRACE == 1 ]; then outputHandler "rcNormal: ${rcNormal[*]}" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
+if [ $TRACE == 1 ]; then outputHandler "rcError: ${rcError[*]}" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
+
+# Check Tomcat-Content Server connnectivity performance
+_OBJECT="Tomcat"
+outputHandler "## Running RUNNER: test_tomcat.sh - MODULE: networkCheckWebapp ##" "INFO" "$_APPLICATION" "$_OBJECT"
+networkCheckWebapp rcNormal rcError "SEVERITY[$_SEVERITY]" $TOMCAT_LIST
+itemStateHandler "networkCheckWebapp" "$_SEVERITY" "${rcNormal[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
+itemStateHandler "networkCheckWebapp" "$_SEVERITY" "${rcError[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
 if [ $TRACE == 1 ]; then outputHandler "rcNormal: ${rcNormal[*]}" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
 if [ $TRACE == 1 ]; then outputHandler "rcError: ${rcError[*]}" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
 

@@ -15,7 +15,7 @@ STAGE='DEV'
 
 # List runners
 # Tomcat
-#       test_tomcat.sh --> tomcatCountProcess
+#       test_tomcat.sh --> tomcatCountProcess , networkCheckWebapp
 #       test_brava_mp.sh --> bravaMountPointTester
 
 RUNNERS="test_tomcat.sh test_brava_mp.sh"
@@ -36,6 +36,8 @@ then
         chown -R $SUDO_USER:$SUDO_GROUP "$SCRIPT_ROOT/logs/monitoring.log.$_DAY"
         chmod +rw "$SCRIPT_ROOT/logs/monitoring.log.$_DAY"
 fi
+
+source "$SCRIPT_ROOT/settings/settings_$STAGE.sh"
 
 # Execute the scripts, send the notification if a script is already running
 for _RUNNER_NAME in $RUNNERS; do
