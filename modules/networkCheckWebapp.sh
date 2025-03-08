@@ -25,8 +25,6 @@ networkCheckWebapp () {
     # Additional arrays (if needed)
     # local _RESULTVAR_ADDITIONAL=()
 
-    
-
     inputParameterHandler "$@"
 ######################################################################
 
@@ -36,9 +34,12 @@ networkCheckWebapp () {
     local _CS_STRING=(${_CS_STRING:-$(grep dfc.docbroker.host $_DFC | cut -d '=' -f2 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')})
     local _CS_PORT=$(grep dfc.docbroker.port $_DFC | cut -d '=' -f2 | head -1 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
     local _MSG="Nagios check_tcp fail on ${HOSTNAME} connecting to Content Server"
- 
-    for _cs in "${_CS_STRING[@]}";
-    do
+    local _FILE=$SCRIPT_ROOT/check_tcp
+    
+    if [[ -x $_FILE ]]  # File check_tcp exists and is executable
+    then
+        for _cs in "${_CS_STRING[@]}";
+        do
         outputHandler "Running Nagios check_tcp test for $_cs:$_CS_PORT" "$_SEVERITY" "$_APPLICATION" "$_OBJECT" # Echo error message to logs/output
                     
         local _check_tcp_result=$($SCRIPT_ROOT/check_tcp -H $_cs -p $_CS_PORT -w 1 -c 5)
@@ -53,12 +54,14 @@ networkCheckWebapp () {
             _ARRAY_NORMAL[${#_ARRAY_NORMAL[@]}]="$_MSG $_cs:$_CS_PORT|" # Add error to array with items without error
         fi
 
-    done
-    unset _TOMCAT
-    unset _DFC
-    unset _CS_STRING
-    unset _CS_PORT
-    unset _MSG
+        done
+    else
+        echo "File '$_FILE' is not executable or found"
+        exit 1
+    fi
+    
+    unset _TOMCAT _DFC _DFC _CS_STRING _CS_PORT _cs _check_tcp_result _check_tcp_return_code _FILE
+    unset _MSG _ARRAY_NORMAL _ARRAY_ERROR _SEVERITY _APPLICATION _OBJECT # Clean up variables
 
 
 ######################################################################
