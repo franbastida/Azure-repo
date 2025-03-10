@@ -56,7 +56,6 @@ networkCheckWebapp () {
 
         done
     else
-        echo "File '$_FILE' is not executable or found"
         outputHandler "File '$_FILE' is not executable or found" "$_SEVERITY" "$_APPLICATION" "$_OBJECT" # Echo error message to logs/output
     fi
     
