@@ -57,7 +57,7 @@ networkCheckWebapp () {
         done
     else
         echo "File '$_FILE' is not executable or found"
-        exit 1
+        outputHandler "File '$_FILE' is not executable or found" "$_SEVERITY" "$_APPLICATION" "$_OBJECT" # Echo error message to logs/output
     fi
     
     unset _TOMCAT _DFC _DFC _CS_STRING _CS_PORT _cs _check_tcp_result _check_tcp_return_code _FILE
