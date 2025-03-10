@@ -60,7 +60,7 @@ networkCheckWebapp () {
     fi
     
     unset _TOMCAT _DFC _DFC _CS_STRING _CS_PORT _cs _check_tcp_result _check_tcp_return_code _FILE
-    unset _MSG _ARRAY_NORMAL _ARRAY_ERROR _SEVERITY _APPLICATION _OBJECT # Clean up variables
+    unset _MSG _SEVERITY _APPLICATION _OBJECT # Clean up variables
 
 
 ######################################################################
