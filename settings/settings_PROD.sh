@@ -8,6 +8,7 @@ SMTP_SERVER='smtpout.basf.net'
 HOSTNAME=${HOSTNAME:-`hostname`}
 HOSTNAME_FQDN=${HOSTNAME_FQDN:-`hostname -f`}
 DMUSER=${DMUSER:-`whoami`}
+REGION='EUR'  # Other are ASIA and NA
 
 # Environment settings - Tomcat
 TOMCAT_USER='wwwrun'

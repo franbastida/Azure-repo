@@ -56,11 +56,11 @@ networkCheckWebapp () {
 
         done
     else
+
         outputHandler "File '$_FILE' is not executable or found" "$_SEVERITY" "$_APPLICATION" "$_OBJECT" # Echo error message to logs/output
     fi
     
-    unset _TOMCAT _DFC _DFC _CS_STRING _CS_PORT _cs _check_tcp_result _check_tcp_return_code _FILE
-    unset _MSG _SEVERITY _APPLICATION _OBJECT # Clean up variables
+    unset _TOMCAT _DFC _DFC _CS_STRING _CS_PORT _cs _check_tcp_result _check_tcp_return_code _FIL # Clean up variables
 
 
 ######################################################################

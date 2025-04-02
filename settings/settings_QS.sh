@@ -7,6 +7,7 @@ MAIL_RECEIPIENT='is-documentum-hosting@basf.com'
 SMTP_SERVER='smtpout.basf.net'
 HOSTNAME=${HOSTNAME:-`hostname`}
 DMUSER=${DMUSER:-`whoami`}
+REGION='EUR'  # Other are ASIA and NA
 
 # Environment settings - Tomcat
 TOMCAT_USER='wwwrun'

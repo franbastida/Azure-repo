@@ -34,13 +34,13 @@ notificationHandler () {
 		if [ $DEBUG == 1 ]; then outputHandler "Sending opcmsg notification: $____SEVERITY '$____MSG'" "DEBUG" "$____APPLICATION" "$____OBJECT"; fi
 		# Fixing HP OVO alarms correlation by removing "ERROR:" or "NORMAL:" text from msg_text - MSG_TEXT=$STAGE$(echo "$STAGE $____MSG" | sed 's/^.*NORMAL:/:/');
 		if [ $____STATE == "NORMAL" ]; then
-			MSG_TEXT=$STAGE$(echo "$STAGE $____MSG" | sed 's/^.*NORMAL:/:/');
+            MSG_TEXT=$STAGE$(echo "$STAGE $____MSG" | sed 's/^.*NORMAL/'" $REGION"'/');
 			$OV_ROOT/opcmsg severity="normal" application="$____APPLICATION" object="$____OBJECT" msg_text="$MSG_TEXT" msg_grp="$MSG_GROUP" -option stage="$STAGE" -option Description="$____DETAILS";
 			if [ $TRACE == 1 ]; then 
 				outputHandler "$OV_ROOT/opcmsg severity='normal' application='$____APPLICATION' object='$____OBJECT' msg_text='$MSG_TEXT' msg_grp='$MSG_GROUP' -option stage='$STAGE'" "TRACE" "$__APPLICATION" "$__OBJECT"; 
 			fi
 		else # STATE != "NORMAL" meaning there is an alarm
-			MSG_TEXT=$STAGE$(echo "$STAGE $____MSG" | sed 's/^.*ERROR:/:/');
+            MSG_TEXT=$STAGE$(echo "$STAGE $____MSG" | sed 's/^.*ERROR/'" $REGION"'/');
 			$OV_ROOT/opcmsg severity="$____SEVERITY" application="$____APPLICATION" object="$____OBJECT" msg_text="$MSG_TEXT" msg_grp="$MSG_GROUP" -option stage="$STAGE" -option Description="$____DETAILS"; 
 			if [ $TRACE == 1 ]; then 
 				outputHandler "$OV_ROOT/opcmsg severity='$____SEVERITY' application='$____APPLICATION' object='$____OBJECT' msg_text='$MSG_TEXT' msg_grp='$MSG_GROUP' -option stage='$STAGE'" "TRACE" "$__APPLICATION" "$__OBJECT"; 
@@ -51,7 +51,7 @@ notificationHandler () {
         #sendAlertMail($MAIL_SENDER, $MAIL_RECEIPIENT, $SMTP_SERVER, $MSG, $SEVERITY, $APPLICATION, $OBJECT, $STAGE)
         if [ $DEBUG == 1 ]; then outputHandler "Sending email notification: $____SEVERITY '$____MSG'" "DEBUG" "$____APPLICATION" "$____OBJECT"; fi
         local ____MAIL_BODY="$____TIMESTAMP $HOSTNAME $STAGE $____MSG $____DETAILS";
-        mailx -v -r "$MAIL_SENDER" -s "[HP OVO] $STAGE $HOSTNAME $____SEVERITY $____MSG" -S smtp="$SMTP_SERVER" $MAIL_RECEIPIENT <<< $____MAIL_BODY;
+        mailx -v -r "$MAIL_SENDER" -s "[HP OVO] $STAGE $REGION $HOSTNAME $____SEVERITY $____MSG" -S smtp="$SMTP_SERVER" $MAIL_RECEIPIENT <<< $____MAIL_BODY;
         if [ $TRACE == 1 ]; then outputHandler "echo '$____TIMESTAMP $HOSTNAME $STAGE $____MSG $____DETAILS' | mailx -v -r '$MAIL_SENDER' -s '[HP OVO] $STAGE $HOSTNAME $____SEVERITY $____APPLICATION $____OBJECT' -S smtp='$SMTP_SERVER' $MAIL_RECEIPIENT" "TRACE" "$__APPLICATION" "$__OBJECT"; fi
     fi
 }

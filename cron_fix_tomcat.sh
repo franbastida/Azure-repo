@@ -17,6 +17,7 @@ STAGE='DEV'
 # Tomcat
 #       test_tomcat.sh --> tomcatCountProcess , networkCheckWebapp
 #       test_brava_mp.sh --> bravaMountPointTester
+#       test_brava_publisher.sh --> bravaPublisherProcess
 
 RUNNERS="test_tomcat.sh test_brava_mp.sh"
 
