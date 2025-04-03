@@ -13,6 +13,18 @@ _DAY=$(date +%F)
 SCRIPT_ROOT=$(dirname $(readlink -f $0))
 STAGE='DEV'
 
+#	wwwrun@lin8272416:~> ls -ltra ~/.bash_profile
+#	-rw-r--r-- 1 wwwrun www 159 Jan 30  2023 /var/lib/wwwrun/.bash_profile
+#	wwwrun@lin8272416:~> cat /var/lib/wwwrun/.bash_profile
+#
+#	if [ -f ~/.bashrc ]; then
+#			. ~/.bashrc
+#	fi
+#
+#	# User specific environment and startup programs
+#	export STAGE='DEV'
+#	export HISTTIMEFORMAT="%d/%m/%y %H:%M "
+
 # List runners
 # Tomcat
 #       test_tomcat.sh --> tomcatCountProcess , networkCheckWebapp

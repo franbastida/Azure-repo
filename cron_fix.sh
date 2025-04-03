@@ -14,7 +14,21 @@ SUDO_GROUP='dmadmin'
 _DAY=$(date +%F)
 SCRIPT_ROOT=$(dirname $(readlink -f $0))
 STAGE='PROD'  # This value is not relevant. STAGE value is taken from 
-# /usr2/local/dmadmin/.bash_profile  -->  export STAGE='DEV'
+# dmadmin@lin0879086:/usr2$ ls -ltra ~/.bash_profile
+# -rw-r--r-- 1 dmadmin dmadmin 202 Jul 16  2024 /usr2/local/dmadmin/.bash_profile
+# dmadmin@lin0879086:/usr2$ cat /usr2/local/dmadmin/.bash_profile
+#             if [ -f ~/.profile ]; then
+#                  . ~/.profile
+#              fi
+
+#              # Get the aliases and functions
+#              if [ -f ~/.bashrc ]; then
+#                  . ~/.bashrc
+#              fi
+
+#              # User specific environment and startup programs
+#              export STAGE='DEV'
+
 # JMS_VERSION=$(sudo -Hiu $SUDO_USER env | grep DM_JMS_HOME | cut -d "=" -f2);   
 # Variable was defined in setting_<>.sh but we are taking system's variables DM_JMS_HOME instead
 
