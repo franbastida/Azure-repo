@@ -61,7 +61,7 @@ source $SCRIPT_ROOT/modules/xploreWatchdogProcess.sh
 _APPLICATION='Documentum'
 _CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Documentum+xPlore+-+Watchdog+process+is+not+running"
 _SEVERITY="warning"
-_OBJECT=""
+_OBJECT="xPlore"
 
 ### Local
 # Check if xPlore services are running

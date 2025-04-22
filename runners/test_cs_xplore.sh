@@ -63,7 +63,7 @@ source $SCRIPT_ROOT/modules/xploreTestIndexagent.sh
 _APPLICATION='Documentum'
 _CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Documentum+xPlore+-+search+engine+is+not+working+properly"
 _SEVERITY="warning"
-_OBJECT=""
+_OBJECT="xPlore"
 
 # Check connection to xPlore instance for docbases
 _OBJECT="xPloreDsearch"

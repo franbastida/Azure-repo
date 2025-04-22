@@ -61,7 +61,7 @@ source $SCRIPT_ROOT/modules/bravaPublisherProcess.sh
 _APPLICATION='Documentum'
 _CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Brava+Publisher+process+is+not+running"
 _SEVERITY="warning"
-_OBJECT=""
+_OBJECT="Brava"
 
 ### Local
 # Check if Brava Publisher services are running

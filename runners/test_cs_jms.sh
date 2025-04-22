@@ -65,7 +65,7 @@ source $SCRIPT_ROOT/modules/jmsTestD2Method.sh
 _APPLICATION='Documentum'
 _CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Documentum+Server+-+Java+Method+Server+(JMS)+service+is+not+working+properly"
 _SEVERITY="warning"
-_OBJECT=""
+_OBJECT="JMS"
 
 ### LOCAL
 # Check if JMS is running on server

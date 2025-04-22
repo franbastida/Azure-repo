@@ -61,7 +61,7 @@ source $SCRIPT_ROOT/modules/bravaMountPointTester.sh
 _APPLICATION='Documentum'
 _CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Brava+dlcache+not+mounted"
 _SEVERITY="warning"
-_OBJECT=""
+_OBJECT="Brava""
 
 ### LOCAL
 # Check if Tomcat is running on server

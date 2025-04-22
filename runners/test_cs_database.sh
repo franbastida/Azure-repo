@@ -61,7 +61,7 @@ source $SCRIPT_ROOT/modules/databaseTestConnection.sh
 _APPLICATION='Documentum'
 _CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Documentum+Server+-+repository+services+are+not+working+properly"
 _SEVERITY="warning"
-_OBJECT=""
+_OBJECT="Brava"
 
 ### LOCAL
 # Check if docbrokers are running on server

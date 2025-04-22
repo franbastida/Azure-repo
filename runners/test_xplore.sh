@@ -61,7 +61,7 @@ source $SCRIPT_ROOT/modules/xploreCountProcess.sh
 _APPLICATION='Documentum'
 _CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Documentum+xPlore+-+search+engine+is+not+working+properly"
 _SEVERITY="warning"
-_OBJECT=""
+_OBJECT="xPlore"
 
 ### Local
 # Check if xPlore services are running

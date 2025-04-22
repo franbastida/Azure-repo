@@ -63,7 +63,7 @@ source $SCRIPT_ROOT/modules/networkCheckWebapp.sh
 _APPLICATION='Documentum'
 _CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Apache+Tomcat+is+not+working+properly"
 _SEVERITY="warning"
-_OBJECT=""
+_OBJECT="Tomcat"
 
 ### LOCAL
 # Check if Tomcat is running on server

@@ -61,7 +61,7 @@ source $SCRIPT_ROOT/modules/nfsMountPointTester.sh
 _APPLICATION='Documentum'
 _CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Documentum+Server+vg01lv02+NFS+not+mounted"
 _SEVERITY="warning"
-_OBJECT=""
+_OBJECT="docbase"
 
 ### LOCAL
 _OBJECT="NFS"
