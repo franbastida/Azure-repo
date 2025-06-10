@@ -56,22 +56,22 @@ source $SCRIPT_ROOT/modules/inputParameterHandler.sh
 
 
 # Load other modules
-source $SCRIPT_ROOT/modules/test_docker_tomcat.sh
+source $SCRIPT_ROOT/modules/dockertomcatProcess.sh
 source $SCRIPT_ROOT/modules/networkCheckWebapp.sh
 
 # Settings for arugments passed to opcmsg and e-mail calls
 _APPLICATION='Documentum'
 _CONFLUENCE_LINK="https://confluence.basf.net/display/DTL/Apache+Tomcat+is+not+working+properly"
 _SEVERITY="warning"
-_OBJECT="Tomcat"
+_OBJECT="Docker"
 
 ### LOCAL
-# Check if Tomcat is running on server
-_OBJECT="Tomcat"
-outputHandler "## Running RUNNER: test_tomcat.sh - MODULE: tomcatCountProcess ##" "INFO" "$_APPLICATION" "$_OBJECT"
-tomcatCountProcess rcNormal rcError "SEVERITY[$_SEVERITY]" $TOMCAT_LIST
-itemStateHandler "tomcatCountProcess" "$_SEVERITY" "${rcNormal[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
-itemStateHandler "tomcatCountProcess" "$_SEVERITY" "${rcError[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
+# Check if Docker Tomcat is running on server
+_OBJECT="Docker"
+outputHandler "## Running RUNNER: test_tomcat.sh - MODULE: dockertomcatProcess ##" "INFO" "$_APPLICATION" "$_OBJECT"
+dockertomcatProcess rcNormal rcError "SEVERITY[$_SEVERITY]" $TOMCAT_LIST
+itemStateHandler "dockertomcatProcess" "$_SEVERITY" "${rcNormal[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
+itemStateHandler "dockertomcatProcess" "$_SEVERITY" "${rcError[@]}" "$_APPLICATION" "$_OBJECT" "$_CONFLUENCE_LINK"
 if [ $TRACE == 1 ]; then outputHandler "rcNormal: ${rcNormal[*]}" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
 if [ $TRACE == 1 ]; then outputHandler "rcError: ${rcError[*]}" "TRACE" "$_APPLICATION" "$_OBJECT"; fi
 

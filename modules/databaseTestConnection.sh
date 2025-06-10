@@ -41,6 +41,7 @@ databaseTestConnection () {
         if [ $DEBUG == 1 ]; then outputHandler "Checking database connection for $_docbase repository - tnsping" "DEBUG" "$_APPLICATION" "$_OBJECT"; fi
         # Get the DB connection string
         local _DB_CONN=`grep database_conn $DOCUMENTUM/dba/config/$_docbase/server.ini | cut -d '=' -f2 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'`
+        # for NA -->  local _DB_CONN=`grep database_conn $DOCUMENTUM/dba/config/$_docbase/server.ini | sed -e 's/\([^#]*\)[[:space:]]#.*$/\1/;/^#/d' | cut -d '=' -f2 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'`
         #using global variable to enable exit code capture
         _TNSPING_RESULT=`tnsping $_DB_CONN`
         local _TNSPING_RETURN_CODE=$?
